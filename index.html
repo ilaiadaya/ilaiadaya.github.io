@@ -61,31 +61,56 @@
     .section.active .content {
       display: block;
     }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
   <h1>Ilai</h1>
-  <p>Welcome to my portfolio! Here you'll find details about my current work, the events I organize, and the apps I create.</p>
+  <p>Welcome to my page! Here you'll find details about my current work, the events I organize, and the apps I create.</p>
 
   <div class="section">
     <button onclick="toggleSection(this)">Current Job</button>
     <div class="content">
-      <p>Currently working in AI and data science, focusing on sustainable solutions and innovative technologies.</p>
+      <p>Currently working at Deloitte in AI and data science, focusing on sustainable solutions and innovative technologies.</p>
     </div>
   </div>
 
   <div class="section">
     <button onclick="toggleSection(this)">Events</button>
     <div class="content">
-      <p>Organizer of various successful events, including comedy nights, hackathons, and tech meetups.</p>
+      <p>Organizer of various successful events, including comedy nights and talent shows in Amsterdam. Check it out <a href="https://www.at5.nl/artikelen/219233/stand-up-comedy-night-voor-en-door-uva-studenten-zon-grote-zaal-is-intimiderend" target="_blank">here</a>. Planning to organize a hackathon soon, get in touch if you want to help!</p>
     </div>
   </div>
 
   <div class="section">
     <button onclick="toggleSection(this)">Apps</button>
     <div class="content">
-      <p>Developer of creative and functional apps, such as AI-based social platforms and productivity tools.</p>
+      <p>Check out <a href="https://apps.apple.com/be/app/morfff/id6474212419" target="_blank">Morfff</a>, which I made together with Nathan Carey.</p>
+      <p>Currently working on Stroll — an AI-enabled, map-based guide for cities.</p>
+      <p>Read my latest project on fixing knowledge graphs in LLM applications <a href="https://medium.com/@ilai/how-to-fix-exploding-knowledge-graphs-in-llm-applications-bf05a9120606" target="_blank">here</a>, in collaboration with <a href="https://bguedj.github.io" target="_blank">Benjamin Guedj</a>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <button onclick="toggleSection(this)">Awards and Recognitions</button>
+    <div class="content">
+      <p>'24 Winner of <a href="https://www.ucl.ac.uk/computer-science/news/2024/feb/ucl-hackathon-how-ai-can-assist-humanitarian-crisis" target="_blank">UCL Engineering Induction Week Hackathon</a> | '24 Winner Entrepreneur Society Best Product | '24 2nd Place AIFOUNDRY Pitch Competition @Stride VC | '23-'24 Recognized in T500 (Top 500 Tech Talents Netherlands)</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <button onclick="toggleSection(this)">Extracurricular Activities</button>
+    <div class="content">
+      <p>Active in organizing community events, hackathons, and educational programs focused on AI and tech innovation.</p>
     </div>
   </div>
 
