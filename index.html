@@ -15,43 +15,6 @@
     overflow-x: hidden;
   }
 
-  /* Funky Shapes */
-  .background-shapes::before,
-  .background-shapes::after {
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, #ffb3ba, #ffdfba);
-    border-radius: 50%;
-    opacity: 0.3;
-    z-index: -1;
-  }
-
-  .background-shapes::before {
-    top: -100px;
-    left: -100px;
-  }
-
-  .background-shapes::after {
-    bottom: -100px;
-    right: -100px;
-  }
-
-  /* Add another shape for extra flair */
-  .background-shapes .shape {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, #bae1ff, #baffc9);
-    border-radius: 50%;
-    opacity: 0.3;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
     h1 {
       font-size: 3rem;
       text-align: center;
@@ -113,8 +76,7 @@
 </head>
 <body>
   <div class="background-shapes">
-    <div class="shape"></div>
-  <h1>Ilai Adaya</h1>
+  <h1>Ilai Bachrach</h1>
 <div style="text-align: center; margin-bottom: 20px;">
   <a href="https://www.linkedin.com/in/ilaiadaya/" target="_blank" style="margin-right: 10px;">
     <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="20" height="20">
@@ -176,7 +138,6 @@
       section.classList.toggle('active');
     }
   </script>
-  </div>
 
 </body>
 </html>
