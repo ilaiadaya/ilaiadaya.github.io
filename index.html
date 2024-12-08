@@ -5,13 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ilai's Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f9f9f9;
-      color: #333;
-    }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+    color: #333;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Funky Shapes */
+  .background-shapes::before,
+  .background-shapes::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ffb3ba, #ffdfba);
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .background-shapes::before {
+    top: -100px;
+    left: -100px;
+  }
+
+  .background-shapes::after {
+    bottom: -100px;
+    right: -100px;
+  }
+
+  /* Add another shape for extra flair */
+  .background-shapes .shape {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #bae1ff, #baffc9);
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
     h1 {
       font-size: 3rem;
@@ -73,7 +112,8 @@
   </style>
 </head>
 <body>
-
+  <div class="background-shapes">
+    <div class="shape"></div>
   <h1>Ilai Adaya</h1>
 <div style="text-align: center; margin-bottom: 20px;">
   <a href="https://www.linkedin.com/in/ilaiadaya/" target="_blank" style="margin-right: 10px;">
@@ -122,7 +162,7 @@
   </div>
   
 <div style="text-align: center; margin-top: 30px;">
-  <p>Message me:</p>
+  <p style="margin-bottom: 5px;">Message me:</p>
   <p>
     <a href="mailto:ilaibachrach@gmail.com">ilaibachrach@gmail.com</a><br>
     <a href="mailto:ilai.bachrach.23@ucl.ac.uk">ilai.bachrach.23@ucl.ac.uk</a><br>
@@ -136,6 +176,7 @@
       section.classList.toggle('active');
     }
   </script>
+  </div>
 
 </body>
 </html>
