@@ -3,141 +3,384 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ilai's Portfolio</title>
+  <title>Ilai Bachrach | Portfolio</title>
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #fff;
-    color: #333;
-    position: relative;
-    overflow-x: hidden;
-  }
-
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 10px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    p {
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Continuous Background Pattern */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(40, 40, 40, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(30, 30, 30, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(25, 25, 25, 0.2) 0%, transparent 60%),
+        #000;
+      background-size: 100% 100%;
+      animation: backgroundShift 30s ease-in-out infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% {
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+      }
+      50% {
+        background-position: 10% 10%, 90% 90%, 60% 40%;
+      }
+    }
+
+    /* Subtle grid overlay */
+    .background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100px 100px;
+      opacity: 0.3;
+    }
+
+    /* Main Content */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .hero {
       text-align: center;
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 30px;
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: #888;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .social-link img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+    }
+
+    /* Sections */
+    .sections {
+      max-width: 800px;
+      width: 100%;
     }
 
     .section {
-      margin: 10px auto;
-      max-width: 600px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #fff;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .section button {
       width: 100%;
-      padding: 15px;
-      font-size: 1.2rem;
+      padding: 25px 30px;
+      font-size: 1.3rem;
       text-align: left;
-      background-color: #f0f0f0;
+      background: transparent;
       border: none;
-      outline: none;
+      color: #fff;
       cursor: pointer;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+      font-weight: 400;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
     }
 
     .section button:hover {
-      background-color: #ddd;
+      color: #ddd;
+    }
+
+    .section button::after {
+      content: '+';
+      font-size: 2rem;
+      transition: transform 0.3s ease;
+      color: #888;
+      font-weight: 300;
+    }
+
+    .section.active button::after {
+      transform: rotate(45deg);
     }
 
     .content {
-      padding: 15px;
+      padding: 0 30px 30px;
       display: none;
-      font-size: 1rem;
-      border-top: 1px solid #ccc;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #aaa;
     }
 
     .section.active .content {
       display: block;
+      animation: fadeIn 0.5s ease;
     }
 
-    a {
-      color: #007bff;
+    .content p {
+      margin-bottom: 15px;
+    }
+
+    .content a {
+      color: #fff;
       text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .content a:hover {
+      border-bottom-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .cv-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    .cv-button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Contact Section */
+    .contact {
+      text-align: center;
+      margin-top: 40px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .contact p {
+      margin-bottom: 10px;
+      color: #888;
+    }
+
+    .contact-title {
+      margin-bottom: 15px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .contact a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact a:hover {
+      border-bottom-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .signature {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #666;
+      font-style: italic;
+      font-weight: 300;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section button {
+        font-size: 1.1rem;
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="background-shapes">
-  <h1>Ilai Bachrach</h1>
-<div style="text-align: center; margin-bottom: 20px;">
-  <a href="https://www.linkedin.com/in/ilaiadaya/" target="_blank" style="margin-right: 10px;">
-    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="20" height="20">
-  </a>
-  <a href="https://github.com/ilaiadaya/" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="20" height="20">
-  </a>
-</div>
-    <p>Welcome to my page! Here you'll find details about my current work, the events I organize, and the apps I create.</p>
-  <div class="section">
-    <button onclick="toggleSection(this)">Current Job</button>
-    <div class="content">
-      <p>Currently working at Deloitte in AI and data science, focusing on turning risks into opportunities in the context of automating ESG reporting</p>
-         <p>Before this I did my masters at UCL in AI for Sustainable Development</p>
+  <!-- Background -->
+  <div class="background"></div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <div class="hero">
+      <h1>Ilai Bachrach</h1>
+      <p class="subtitle">✌️</p>
+      
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/ilaiadaya/" target="_blank" class="social-link">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+        </a>
+        <a href="https://github.com/ilaiadaya/" target="_blank" class="social-link">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+        </a>
+      </div>
+    </div>
+
+    <div class="sections">
+      <div class="section">
+        <button onclick="toggleSection(this)">Current Work</button>
+        <div class="content">
+          <p>Founder of <a href="https://alpacajobs.ai" target="_blank">alpacajobs.ai</a> — revolutionizing job matching with AI.</p>
+          <p>Grew to 250,000 CVs in 6 months, connecting talent with opportunities across the globe.</p>
+          <p>Previously completed my Masters at UCL in AI for Sustainable Development.</p>
+          <p>
+            <a href="cv.pdf" download class="cv-button">Download My CV</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <button onclick="toggleSection(this)">Events</button>
+        <div class="content">
+          <p>Organizer of various events, including comedy nights and talent shows in Amsterdam. Check it out <a href="https://www.at5.nl/artikelen/219233/stand-up-comedy-night-voor-en-door-uva-studenten-zon-grote-zaal-is-intimiderend" target="_blank">here</a>.</p>
+          <p>Planning to organize a hackathon soon, get in touch if you want to help!</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <button onclick="toggleSection(this)">Apps & Projects</button>
+        <div class="content">
+          <p>Check out <a href="https://apps.apple.com/be/app/morfff/id6474212419" target="_blank">Morfff</a>, which I made together with Nathan Carey.</p>
+          <p>Read my latest project on fixing knowledge graphs in LLM applications <a href="https://medium.com/@ilai/how-to-fix-exploding-knowledge-graphs-in-llm-applications-bf05a9120606" target="_blank">here</a>, in collaboration with <a href="https://bguedj.github.io" target="_blank">Benjamin Guedj</a>.</p>
+          <p>Other work I've done can be found <a href="https://github.com/ilaiadaya/Projects" target="_blank">here</a>.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <button onclick="toggleSection(this)">Awards & Recognitions</button>
+        <div class="content">
+          <p>'24 Winner of <a href="https://www.ucl.ac.uk/computer-science/news/2024/feb/ucl-hackathon-how-ai-can-assist-humanitarian-crisis" target="_blank">UCL Engineering Induction Week Hackathon</a> | '24 Winner Entrepreneur Society Best Product | '24 2nd Place AIFOUNDRY Pitch Competition @Stride VC | '23-'24 Recognized in T500 (Top 500 Tech Talents Netherlands)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact">
+      <p class="contact-title">Get in touch</p>
       <p>
-  <a href="cv.pdf" download style="text-decoration: none; font-weight: bold;">
-    Download My CV
-  </a>
-</p>
+        <a href="mailto:ilaibachrach@gmail.com">ilaibachrach@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="signature">
+      love from ilai
     </div>
   </div>
 
-  <div class="section">
-    <button onclick="toggleSection(this)">Events</button>
-    <div class="content">
-      <p>Organizer of various successful events, including comedy nights and talent shows in Amsterdam. Check it out <a href="https://www.at5.nl/artikelen/219233/stand-up-comedy-night-voor-en-door-uva-studenten-zon-grote-zaal-is-intimiderend" target="_blank">here</a>. Planning to organize a hackathon soon, get in touch if you want to help!</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <button onclick="toggleSection(this)">Apps & more</button>
-    <div class="content">
-      <p>Check out <a href="https://apps.apple.com/be/app/morfff/id6474212419" target="_blank">Morfff</a>, which I made together with Nathan Carey.</p>
-      <p>Currently working on Stroll — an AI-enabled, map-based guide for cities.</p>
-      <p>Read my latest project on fixing knowledge graphs in LLM applications <a href="https://medium.com/@ilai/how-to-fix-exploding-knowledge-graphs-in-llm-applications-bf05a9120606" target="_blank">here</a>, in collaboration with <a href="https://bguedj.github.io" target="_blank">Benjamin Guedj</a>.</p>
-      <p>Other work I've done can be found <a href="https://github.com/ilaiadaya/Projects" target="_blank">here</a>
-    </div>
-  </div>
-
-  <div class="section">
-    <button onclick="toggleSection(this)">Awards & Recognitions</button>
-    <div class="content">
-      <p>'24 Winner of <a href="https://www.ucl.ac.uk/computer-science/news/2024/feb/ucl-hackathon-how-ai-can-assist-humanitarian-crisis" target="_blank">UCL Engineering Induction Week Hackathon</a> | '24 Winner Entrepreneur Society Best Product | '24 2nd Place AIFOUNDRY Pitch Competition @Stride VC | '23-'24 Recognized in T500 (Top 500 Tech Talents Netherlands)</p>
-    </div>
-  </div>
-  
-<div style="text-align: center; margin-top: 30px;">
-  <p style="margin-bottom: 5px;">Message me:</p>
-  <p>
-    <a href="mailto:ilaibachrach@gmail.com">ilaibachrach@gmail.com</a><br>
-    <a href="mailto:ilai.bachrach.23@ucl.ac.uk">ilai.bachrach.23@ucl.ac.uk</a><br>
-    <a href="mailto:ibachrach@deloitte.de">ibachrach@deloitte.de</a>
-  </p>
-</div>
-  
   <script>
+    // Toggle sections
     function toggleSection(button) {
       const section = button.parentElement;
       section.classList.toggle('active');
     }
   </script>
-
 </body>
 </html>
